@@ -41,8 +41,8 @@ The more detail the better.
 
 
 ### Running
-`rails s`
+`bundle exec rails s`
 
 **Important**:
 The `rails s` will also run `cd frontend && npm run build`.
-Don't forget to install the frontend before run `rails s`. The `npm run build` will copy static files to the `/public` folder.
+Don't forget to install the frontend before run `bundle exec rails s`. The `npm run build` will copy static files to the `/public` folder.
