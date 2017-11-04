@@ -73,6 +73,7 @@ export default class Cover extends Component {
     render() {
       return (
         <div className="pure-u-23-24 pure-u-md-1-4 pure-u-lg-1-5"
+          onClick={ this.props.show.bind(this) }
           onMouseEnter={ this.showDetails.bind(this, true) }
           onMouseLeave={ this.showDetails.bind(this, false) }>
           <div className="cover">

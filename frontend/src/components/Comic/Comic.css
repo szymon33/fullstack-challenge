@@ -1,0 +1,54 @@
+.comic {
+  border: 1px solid #ccc;
+  cursor: pointer;
+  margin-top: 2em;
+  min-height: 1112px;
+  color: white;
+  text-align: left;
+  width: 920px;
+  margin: 0 auto;
+}
+
+.comic .navigation {
+  padding-bottom: 30px;
+  text-align: left;
+  color: red;
+}
+
+.comic .back {
+  background-color: #fff;
+  padding: 0 1em 0 1em;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: red;
+}
+
+.comic h1 {
+  font-size: 45px;
+  text-transform: uppercase;
+  margin: 0 0 14px 0;
+}
+
+.comic .cover-show {
+  padding: 0 30px 35px 0;
+  vertical-align: top;
+}
+
+.comic .cover-show img { margin: 0 auto; }
+
+.comic .desc {
+  font-size: 14px;
+  color: #FFF;
+}
+
+.comic .gallery-item {
+  padding: 0.5em;
+}
+
+.comic strong {
+  line-height: 3em;
+}
+
+.comic a {
+  color: red;
+}

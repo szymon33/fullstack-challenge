@@ -2,13 +2,14 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { actions } from '../../actions/index.js';
 import Cover from '../Cover/index.js';
+import Comic from '../Comic/index.js';
 import './ComicList.css';
 
 class ComicList extends Component {
 
   constructor(props) {
     super(props);
-    this.state = { page: 0, upvoted: [] };
+    this.state = { page: 0, upvoted: [], currentComic: null };
   }
 
   componentWillMount() {
@@ -45,7 +46,7 @@ class ComicList extends Component {
   }
 
   checkUpvoted(comic_id) {
-    return this.state.upvoted.indexOf(comic_id) > -1
+    return (this.state.upvoted.indexOf(comic_id) > -1);
   }
 
   upvote(comic_id) {
@@ -53,7 +54,37 @@ class ComicList extends Component {
     this.setState({ upvoted: [comic_id, ...this.state.upvoted] });
   }
 
+  showComic(comic, event) {
+    event.preventDefault();
+    this.setState({currentComic: comic});
+  }
+
+  hideComic(event) {
+    event.preventDefault();
+    this.setState({currentComic: null});
+  }
+
+  renderShow() {
+    let comic = this.state.currentComic;
+    if (comic === null) return null;
+    return (<Comic 
+      hide={ this.hideComic.bind(this) }
+      key={ comic.id }
+      title={ comic.title }
+      issueNumber={ comic.issueNumber }
+      variantDescription={ comic.variantDescription }
+      isbn={ comic.isbn }
+      characters={ comic.characters }
+      images={ comic.images }
+      creators={ comic.creators }
+      dates={ comic.dates }
+      thumbnail={ comic.thumbnail }
+    />);
+  }
+
   renderList()  {
+    if (this.state.currentComic !== null) return null;
+
     const results = this.props.comics;
     return results.map((comic) => {
       return (
@@ -61,22 +92,24 @@ class ComicList extends Component {
           key={comic.id}
           upVote={ this.upvote.bind(this, comic.id) }
           upVoted={ this.checkUpvoted.call(this, comic.id) }
+          show={ this.showComic.bind(this, comic) }
           comicData={ comic }
         />)
     });
   }
 
   renderMessageForEmptyList() {
-    if (this.props.comics.length > 0 || this.props.search_term === null) return null;
+    if (this.props.comics.length > 0 || this.props.search_term === null ||
+      this.state.currentComic !== null) return null;
 
     return (
       <div className="empty-message">
         Sorry, we didn't find Covers, matching your search
-      </div>)
+      </div>);
   }
 
   renderPagination() {
-    if (this.props.comics.length === 0) return null;
+    if (this.props.comics.length === 0 || this.state.currentComic !== null) return null;
 
     return (
       <div className="pagination">
@@ -87,7 +120,7 @@ class ComicList extends Component {
           <span className="page-button" onClick={ this.nextPage.bind(this) } >next page</span>
         </div>
       </div>
-    )
+    );
   }
 
   render() {
@@ -100,6 +133,7 @@ class ComicList extends Component {
           { this.renderPagination() }
         </div>
         { this.renderMessageForEmptyList() }
+        { this.renderShow() }
       </div>
     );
   }
