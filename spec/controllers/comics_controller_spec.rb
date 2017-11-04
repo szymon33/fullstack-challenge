@@ -12,6 +12,21 @@ RSpec.describe Api::ComicsController, type: :controller do
 
     specify { expect(response).to match_response_schema("comics") }
     specify { expect(response.status).to eq 200 }
+
+    describe 'JSON' do
+      let(:subject) { JSON.parse(response.body).first }
+
+      it { is_expected.to include 'id' => a_kind_of(Integer) }
+      it { is_expected.to include 'title' => a_kind_of(String) }
+      it { is_expected.to include 'issueNumber' => a_kind_of(Integer) }
+      it { is_expected.to include 'variantDescription' => a_kind_of(String) }
+      it { is_expected.to include 'isbn' => a_kind_of(String) }
+      it { is_expected.to include 'characters' => a_kind_of(Hash) }
+      it { is_expected.to include 'images' => a_kind_of(Array) }
+      it { is_expected.to include 'creators' => a_kind_of(Hash) }
+      it { is_expected.to include 'dates' => a_kind_of(Array) }
+      it { is_expected.to include 'thumbnail' => a_kind_of(Hash) }
+    end
   end
 
   describe 'PUT /comics/:comic_id/upvote' do
