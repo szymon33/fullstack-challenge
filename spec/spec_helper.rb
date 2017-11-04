@@ -100,9 +100,11 @@ RSpec.configure do |config|
 =end
 end
 
+uri_without_timestamp = VCR.request_matchers.uri_without_param(:timestamp, :hash)
+
 VCR.configure do |config|
   config.hook_into :webmock
   config.cassette_library_dir = 'spec/support/fixtures/vcr_cassettes'
-  config.default_cassette_options[:match_requests_on] = [:method, :uri, :body]
+  config.default_cassette_options[:match_requests_on] = [:method, uri_without_timestamp, :body]
   config.default_cassette_options[:record] = :new_episodes
 end
