@@ -54,40 +54,45 @@ export default class Comic extends Component {
       <div className="pure-g">
         { result }
       </div>
-    )
+    );
   }
 
-  render() {
-    return (
-    <div className="comic" onClick={ this.props.hide.bind(this) }>
+  renderNavigation() {
+    return(
       <div className="navigation pure-g">
         <div className="pure-u-1">
           <span className="back">Click anywhere to back to the comics</span>
         </div>
-      </div>
-      <div className="pure-g">
-        <div className="pure-u-1-3">
-          <div className="cover-show">
-            <img className="pure-img" src={ this.coverImage.call(this) } alt={ this.props.title } />
+      </div>);
+  }
+
+  render() {
+    return (
+      <div className="comic" onClick={ this.props.hide.bind(this) }>
+        { this.renderNavigation() }
+        <div className="pure-g">
+          <div className="pure-u-1-3">
+            <div className="cover-show">
+              <img className="pure-img" src={ this.coverImage.call(this) } alt={ this.props.title } />
+            </div>
+          </div>
+          <div className="pure-u-2-3 desc">
+            <h1>{this.props.title}</h1>
+            <br />
+            <strong>Issue Number:&nbsp;</strong>
+            {this.props.issueNumber}
+            <br />
+            <strong>Variant Description:&nbsp;</strong>
+            {this.props.variantDescription}
+            <br />
+            <strong>ISBN:&nbsp;</strong>
+            {this.props.isbn}
+            <br />
+            { this.renderCreators(this.props.creators) }
+            { this.renderGallery(this.props.images) }
           </div>
         </div>
-        <div className="pure-u-2-3 desc">
-          <h1>{this.props.title}</h1>
-          <br />
-          <strong>Issue Number:&nbsp;</strong>
-          {this.props.issueNumber}
-          <br />
-          <strong>Variant Description:&nbsp;</strong>
-          {this.props.variantDescription}
-          <br />
-          <strong>ISBN:&nbsp;</strong>
-          {this.props.isbn}
-          <br />
-          { this.renderCreators(this.props.creators) }
-          { this.renderGallery(this.props.images) }
-        </div>
-      </div>
-      <br />
-    </div>);
+        <br />
+      </div>);
   }
 }
