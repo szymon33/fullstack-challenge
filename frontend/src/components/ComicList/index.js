@@ -66,7 +66,7 @@ class ComicList extends Component {
 
   renderShow() {
     let comic = this.state.currentComic;
-    if (comic === null) return null;
+
     return (<Comic 
       hide={ this.hideComic.bind(this) }
       key={ comic.id }
@@ -83,8 +83,6 @@ class ComicList extends Component {
   }
 
   renderList()  {
-    if (this.state.currentComic !== null) return null;
-
     const results = this.props.comics;
     return results.map((comic) => {
       return (
@@ -99,8 +97,7 @@ class ComicList extends Component {
   }
 
   renderMessageForEmptyList() {
-    if (this.props.comics.length > 0 || this.props.search_term === null ||
-      this.state.currentComic !== null) return null;
+    if (this.props.comics.length > 0 || this.props.search_term === null) return null;
 
     return (
       <div className="empty-message">
@@ -109,7 +106,7 @@ class ComicList extends Component {
   }
 
   renderPagination() {
-    if (this.props.comics.length === 0 || this.state.currentComic !== null) return null;
+    if (this.props.comics.length === 0) return null;
 
     return (
       <div className="pagination">
@@ -124,18 +121,21 @@ class ComicList extends Component {
   }
 
   render() {
-    return (
-      <div>
-        <div className="comic-list">
-          <div className="pure-g">
-            { this.renderList() }
+    if (this.state.currentComic) {
+      return this.renderShow()
+    } else {
+      return (
+        <div>
+          <div className="comic-list">
+            <div className="pure-g">
+              { this.renderList() }
+            </div>
+            { this.renderPagination() }
           </div>
-          { this.renderPagination() }
+          { this.renderMessageForEmptyList() }
         </div>
-        { this.renderMessageForEmptyList() }
-        { this.renderShow() }
-      </div>
-    );
+      );
+    }
   }
 }
 
