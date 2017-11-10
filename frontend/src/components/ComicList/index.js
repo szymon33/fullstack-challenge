@@ -107,7 +107,7 @@ class ComicList extends Component {
           <span className="page-button" onClick={ this.nextPage.bind(this) } >next page</span>
         </div>
       </div>
-    );
+    )
   }
 
   render() {

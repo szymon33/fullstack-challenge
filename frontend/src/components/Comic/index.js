@@ -11,14 +11,12 @@ export default class Comic extends Component {
   }
 
   renderGallery(images) {
-    let size = images.length;
-    if (size === 0) return null;
-    if (size <= 4) size = 4;
+    if (images.length === 0) return null;
 
     let result = images.map((image) => {
       let imageUrl = image.path + "/" + "portrait_fantastic." + image.extension;
       return(
-        <div className={"pure-u-1-" + size }>
+        <div className={"pure-u-1-4"}>
           <div className="gallery-item">
             <img className="pure-img" src={imageUrl} />
           </div>
@@ -62,7 +60,7 @@ export default class Comic extends Component {
     return(
       <div className="navigation pure-g">
         <div className="pure-u-1">
-          <span className="back">Click anywhere to back to the comics</span>
+          <span className="back">Click anywhere to go back to the list</span>
         </div>
       </div>);
   }
