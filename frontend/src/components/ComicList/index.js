@@ -45,8 +45,7 @@ class ComicList extends Component {
     });
   }
 
-  showComic(comic, event) {
-    event.preventDefault();
+  showComic(comic) {
     this.setState({currentComic: comic});
   }
 
@@ -67,7 +66,8 @@ class ComicList extends Component {
     return (this.state.upvoted.indexOf(comic_id) > -1)
   }
 
-  upvote(comic_id) {
+  upvote(comic_id, e) {
+    e.stopPropagation();
     this.props.upVote(comic_id);
     this.setState({ upvoted: [comic_id, ...this.state.upvoted] });
   }
