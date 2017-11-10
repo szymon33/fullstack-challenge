@@ -7,12 +7,13 @@ export default class Comic extends Component {
   }
 
   coverImage() {
-    return `${this.props.thumbnail.path}/portrait_incredible.${this.props.thumbnail.extension}`;
+    return `${this.props.comicData.thumbnail.path}/portrait_incredible.${this.props.comicData.thumbnail.extension}`;
   }
 
   renderGallery(images) {
     let size = images.length;
     if (size === 0) return null;
+    if (size <= 4) size = 4;
 
     let result = images.map((image) => {
       let imageUrl = image.path + "/" + "portrait_fantastic." + image.extension;
@@ -73,23 +74,23 @@ export default class Comic extends Component {
         <div className="pure-g">
           <div className="pure-u-1-3">
             <div className="cover-show">
-              <img className="pure-img" src={ this.coverImage.call(this) } alt={ this.props.title } />
+              <img className="pure-img" src={ this.coverImage.call(this) } alt={ this.props.comicData.title } />
             </div>
           </div>
           <div className="pure-u-2-3 desc">
-            <h1>{this.props.title}</h1>
+            <h1>{this.props.comicData.title}</h1>
             <br />
             <strong>Issue Number:&nbsp;</strong>
-            {this.props.issueNumber}
+            {this.props.comicData.issueNumber}
             <br />
             <strong>Variant Description:&nbsp;</strong>
-            {this.props.variantDescription}
+            {this.props.comicData.variantDescription}
             <br />
             <strong>ISBN:&nbsp;</strong>
-            {this.props.isbn}
+            {this.props.comicData.isbn}
             <br />
-            { this.renderCreators(this.props.creators) }
-            { this.renderGallery(this.props.images) }
+            { this.renderCreators(this.props.comicData.creators) }
+            { this.renderGallery(this.props.comicData.images) }
           </div>
         </div>
         <br />

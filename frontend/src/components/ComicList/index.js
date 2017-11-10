@@ -70,15 +70,7 @@ class ComicList extends Component {
     return (<Comic 
       hide={ this.hideComic.bind(this) }
       key={ comic.id }
-      title={ comic.title }
-      issueNumber={ comic.issueNumber }
-      variantDescription={ comic.variantDescription }
-      isbn={ comic.isbn }
-      characters={ comic.characters }
-      images={ comic.images }
-      creators={ comic.creators }
-      dates={ comic.dates }
-      thumbnail={ comic.thumbnail }
+      comicData={ comic }
     />);
   }
 
