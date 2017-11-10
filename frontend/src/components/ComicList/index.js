@@ -45,15 +45,6 @@ class ComicList extends Component {
     });
   }
 
-  checkUpvoted(comic_id) {
-    return (this.state.upvoted.indexOf(comic_id) > -1);
-  }
-
-  upvote(comic_id) {
-    this.props.upVote(comic_id);
-    this.setState({ upvoted: [comic_id, ...this.state.upvoted] });
-  }
-
   showComic(comic, event) {
     event.preventDefault();
     this.setState({currentComic: comic});
@@ -64,14 +55,21 @@ class ComicList extends Component {
     this.setState({currentComic: null});
   }
 
-  renderShow() {
-    let comic = this.state.currentComic;
-
-    return (<Comic 
+  renderComic(comic) {
+    return (<Comic
       hide={ this.hideComic.bind(this) }
       key={ comic.id }
       comicData={ comic }
     />);
+  }
+
+  checkUpvoted(comic_id) {
+    return (this.state.upvoted.indexOf(comic_id) > -1)
+  }
+
+  upvote(comic_id) {
+    this.props.upVote(comic_id);
+    this.setState({ upvoted: [comic_id, ...this.state.upvoted] });
   }
 
   renderList()  {
@@ -94,7 +92,7 @@ class ComicList extends Component {
     return (
       <div className="empty-message">
         Sorry, we didn't find Covers, matching your search
-      </div>);
+      </div>)
   }
 
   renderPagination() {
@@ -114,7 +112,7 @@ class ComicList extends Component {
 
   render() {
     if (this.state.currentComic) {
-      return this.renderShow()
+      return this.renderComic(this.state.currentComic)
     } else {
       return (
         <div>
