@@ -5,6 +5,7 @@
   width: 100%;
   height: 100px;
   z-index: 1;
+  top: 0;
 }
 
 .loading-logo {
