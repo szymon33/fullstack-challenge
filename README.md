@@ -1,31 +1,10 @@
-### To apply you should follow the instructions below:
+# React and Ruby on Rails application
 
-- Fork this repo
-- Look at the specification below and do your thing
-- Open a Pull Request (optionaly if you have a problem with doing it in the public domain send the repo in a zip file)
+## Introduction
 
-We will review the code and if necessary discuss within the pull request.
+ This React in frontend and Rails in backend application. It calls external Marvell comic books API in order to serach it.
 
-### Challenge spec:
-
-#### Bugfix:
-
-There's a bug in our current implementation: the upvote is not being saved.
-
-**Importante note:** Save upvotes using our current implementation (there's no need to add new features such as user account or per use votes)
-
-#### New feature:
-
-When clicking on a comic we want to view the comic details: title, issue number, variant description, ISBN, characters, images and creators. It should open an overlay over the current content.
-
-### Evaluation Criteria
- - Maintainable code
- - Code architecture design
- - Testability
- - User experience
-
-Feel free to change whatever you think needs to be changed.
-The more detail the better.
+ You can also vote a specific book. For the sake of simplicity, the database stores only one table with comic votes.
 
 ### Installation
 #### Backend
@@ -46,3 +25,10 @@ The more detail the better.
 **Important**:
 The `rails s` will also run `cd frontend && npm run build`.
 Don't forget to install the frontend before run `bundle exec rails s`. The `npm run build` will copy static files to the `/public` folder.
+
+
+## Screenshots
+
+### Show a single comic book
+
+![Screentshot1](screenshots/screenshot1.png)
